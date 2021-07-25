@@ -8,8 +8,8 @@ const Directory = (props) => {
   return (
     <>
       {
-        sections.map(({ title, imageUrl, id }) => 
-          <MenuItem key={id} title={title} imageUrl={imageUrl} />
+        sections.map(({ title, imageUrl, id, size }) => 
+          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
         )
       }
     </>
