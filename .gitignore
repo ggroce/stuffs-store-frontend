@@ -105,3 +105,9 @@ dist
 
 # Build directory
 build/
+
+# Misc
+misc/
+
+# Images
+public/images/
