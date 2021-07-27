@@ -1,6 +1,6 @@
 import React from 'react'
 import SHOP_DATA from './ShopPage.data.js'
-import CollectionPreview from '../../components/collection-preview/collection-preview.jsx'
+import CollectionPreview from '../../components/CollectionPreview/CollectionPreview.jsx'
 
 const ShopPage = () => {
   return (

@@ -1,8 +1,9 @@
 import React from 'react'
 import './App.scss'
-import Header from './components/header/header.jsx'
-import HomePage from './pages/homepage/HomePage.jsx'
-import ShopPage from './pages/shop/ShopPage.jsx'
+import Header from './components/Header/Header.jsx'
+import HomePage from './pages/HomePage/HomePage.jsx'
+import ShopPage from './pages/ShopPage/ShopPage.jsx'
+import NotFound from './pages/NotFound/NotFound.jsx'
 import { Switch, Route } from 'react-router'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
+        <Route component={NotFound} />
       </Switch>
     </div>
   )
