@@ -1,8 +1,8 @@
-import React from "react";
-import "./App.css";
-import HomePage from "./pages/homepage/HomePage.jsx";
-import ShopPage from "./pages/shop/ShopPage.jsx";
-import { Switch, Route } from "react-router";
+import React from 'react'
+import './App.css'
+import HomePage from './pages/homepage/HomePage.jsx'
+import ShopPage from './pages/shop/ShopPage.jsx'
+import { Switch, Route } from 'react-router'
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route path="/shop" component={ShopPage} />
       </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

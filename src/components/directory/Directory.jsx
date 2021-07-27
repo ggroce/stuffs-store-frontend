@@ -1,16 +1,16 @@
-import React from "react";
-import "./Directory.styles.scss";
-import sections from "./Directory.sections.js";
-import MenuItem from "../menu-item/MenuItem";
+import React from 'react'
+import './Directory.styles.scss'
+import sections from './Directory.sections.js'
+import MenuItem from '../menu-item/MenuItem'
 
-const Directory = (props) => {
+const Directory = () => {
   return (
     <>
-      {sections.map(({ id, ...otherProps }) => (
-        <MenuItem key={id} {...otherProps} />
+      {sections.map(({ id, ...otherSectionProps }) => (
+        <MenuItem key={id} {...otherSectionProps} />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Directory;
+export default Directory
