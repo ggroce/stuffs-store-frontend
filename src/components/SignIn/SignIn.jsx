@@ -1,6 +1,7 @@
 import React from 'react'
 import './SignIn.styles.scss'
 import FormInput from '../FormInput/FormInput'
+import CustomButton from '../CustomButton/CustomButton'
 
 const SignIn = () => {
   const [loginCredentials, setLoginCredentials] = React.useState({
@@ -39,7 +40,7 @@ const SignIn = () => {
           value={loginCredentials.password}
           handleChange={handleChange}
         />
-        <input type="submit" value="Sign in" />
+        <CustomButton type="submit">Sign in</CustomButton>
       </form>
     </div>
   )
