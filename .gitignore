@@ -111,3 +111,6 @@ misc/
 
 # Images
 public/images/
+
+# Firebase config
+src/firebase.config.js
