@@ -6,15 +6,16 @@ import HomePage from './pages/HomePage/HomePage.jsx'
 import ShopPage from './pages/ShopPage/ShopPage.jsx'
 import NotFound from './pages/NotFound/NotFound.jsx'
 import AuthenticationPage from './pages/AuthenticationPage/AuthenticationPage'
-import { auth } from './firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState(null)
 
   useEffect(() => {
     let unsubscribeFromAuth = null
-    unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+    unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user)
+      createUserProfileDocument(user)
     })
 
     return () => {
