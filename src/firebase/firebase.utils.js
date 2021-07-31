@@ -15,6 +15,8 @@ export const signInWithGoogle = () => auth.signInWithPopup(provider)
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return
 
+  console.log('additionalData inside of firebase.utils.js: ', additionalData)
+
   const userRef = firestore.doc(`/users/${userAuth.uid}`)
   const snapShot = await userRef.get()
 
@@ -30,19 +32,24 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData,
       })
     } catch (error) {
-      console.log('error creating Google oauth user: ', error)
+      console.log(
+        'Error setting Google oauth user in firebase.utils.js: ',
+        error,
+      )
+    }
+  } else {
+    try {
+      await userRef.update({
+        lastLoginAt: new Date(),
+      })
+    } catch (error) {
+      console.log(
+        'Error updating lastLoginAt for Google oauth user in firebase.utils.js: ',
+        error,
+      )
     }
   }
   return userRef
-  // else {
-  //   try {
-  //     await userRef.set({
-  //       lastLoginAt: new Date(),
-  //     })
-  //   } catch (error) {
-  //     console.log('error updating lastLoginAt for Google oauth user: ', error)
-  //   }
-  // }
 }
 
 export default firebase

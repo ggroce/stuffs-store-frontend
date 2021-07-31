@@ -21,7 +21,7 @@ const SignIn = () => {
 
   return (
     <div className="sign-in">
-      <h2>Have account</h2>
+      <h2 className="title">Have account</h2>
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>

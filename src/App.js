@@ -19,7 +19,6 @@ function App() {
 
         userRef.onSnapshot((snapShot) => {
           setCurrentUser({
-            id: snapShot.id,
             ...snapShot.data(),
           })
         })
@@ -34,7 +33,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    console.log(currentUser)
+    console.log('currentUser from app.js: ', currentUser)
   }, [currentUser])
 
   return (
