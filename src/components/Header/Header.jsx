@@ -27,9 +27,15 @@ const Header = () => {
         </Link>
 
         {currentUser ? (
-          <div className="option" onClick={logoutUser}>
-            LOGOUT
-          </div>
+          <>
+            <div className="option" onClick={logoutUser}>
+              LOGOUT
+            </div>
+            <div className="logged-in-as">
+              LOGGED IN AS: {currentUser.displayName.substring(0, 14)}
+              {currentUser.displayName.length > 15 && '...'}
+            </div>
+          </>
         ) : (
           <Link className="option" to="/auth">
             LOGIN

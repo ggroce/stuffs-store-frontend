@@ -5,6 +5,7 @@ const FormInput = ({ handleChange, label, ...otherFormProps }) => {
   return (
     <div className="group">
       <input
+        maxLength="40"
         className="form-input"
         onChange={handleChange}
         {...otherFormProps}
