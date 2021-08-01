@@ -8,8 +8,13 @@ import NotFound from './pages/NotFound/NotFound.jsx'
 import AuthenticationPage from './pages/AuthenticationPage/AuthenticationPage'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
+import { setCurrentUser } from './redux/user/user.actions'
+import { useDispatch } from 'react-redux'
+
 function App() {
-  const [currentUser, setCurrentUser] = React.useState(null)
+  // const [currentUser, setCurrentUser] = React.useState(null)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     let unsubscribeFromAuth = null
@@ -18,12 +23,8 @@ function App() {
         const userRef = await createUserProfileDocument(userAuth)
 
         userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            ...snapShot.data(),
-          })
+          dispatch(setCurrentUser(snapShot.data()))
         })
-      } else {
-        setCurrentUser(userAuth)
       }
     })
 
@@ -32,13 +33,9 @@ function App() {
     }
   }, [])
 
-  useEffect(() => {
-    console.log('currentUser from app.js: ', currentUser)
-  }, [currentUser])
-
   return (
     <div>
-      <Header currentUser={currentUser} />
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/auth" component={AuthenticationPage} />
