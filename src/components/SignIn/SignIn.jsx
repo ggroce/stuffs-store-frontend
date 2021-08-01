@@ -2,7 +2,7 @@ import React from 'react'
 import './SignIn.styles.scss'
 import FormInput from '../FormInput/FormInput'
 import CustomButton from '../CustomButton/CustomButton'
-import { signInWithGoogle } from '../../firebase/firebase.utils.js'
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils.js'
 
 const SignIn = () => {
   const [loginCredentials, setLoginCredentials] = React.useState({
@@ -10,8 +10,20 @@ const SignIn = () => {
     password: '',
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    try {
+      await auth.signInWithEmailAndPassword(
+        loginCredentials.email,
+        loginCredentials.password,
+      )
+      setLoginCredentials({ email: '', password: '' })
+    } catch (error) {
+      console.log(
+        'Error signing in with email and password in SignIn.jsx',
+        error,
+      )
+    }
   }
 
   const handleChange = (e) => {
@@ -43,7 +55,7 @@ const SignIn = () => {
         />
         <div className="buttons">
           <CustomButton type="submit">Sign in</CustomButton>
-          <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+          <CustomButton type="button" onClick={signInWithGoogle} isGoogleSignIn>
             Sign in with Google
           </CustomButton>
         </div>
