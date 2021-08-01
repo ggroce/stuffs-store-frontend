@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import { auth } from '../../firebase/firebase.utils.js'
 import { useSelector } from 'react-redux'
+import CartIcon from '../CartIcon/CartIcon.jsx'
+import CartDropdown from '../CartDropdown/CartDropdown.jsx'
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user)
+  const showCart = useSelector((state) => state.cart.hidden)
 
   const logoutUser = () => {
     auth.signOut()
@@ -41,7 +44,10 @@ const Header = () => {
             LOGIN
           </Link>
         )}
+
+        <CartIcon />
       </div>
+      {!showCart && <CartDropdown />}
     </div>
   )
 }
