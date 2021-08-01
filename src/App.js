@@ -12,8 +12,6 @@ import { setCurrentUser } from './redux/user/user.actions'
 import { useDispatch } from 'react-redux'
 
 function App() {
-  // const [currentUser, setCurrentUser] = React.useState(null)
-
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -25,6 +23,8 @@ function App() {
         userRef.onSnapshot((snapShot) => {
           dispatch(setCurrentUser(snapShot.data()))
         })
+      } else {
+        dispatch(setCurrentUser(userAuth))
       }
     })
 
