@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage/HomePage.jsx'
 import ShopPage from './pages/ShopPage/ShopPage.jsx'
 import NotFound from './pages/NotFound/NotFound.jsx'
 import AuthenticationPage from './pages/AuthenticationPage/AuthenticationPage'
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 import { setCurrentUser } from './redux/user/user.actions'
@@ -48,6 +49,7 @@ function App() {
           }
         />
         <Route path="/shop" component={ShopPage} />
+        <Route exact page="/checkout" component={CheckoutPage} />
         <Route component={NotFound} />
       </Switch>
     </div>
