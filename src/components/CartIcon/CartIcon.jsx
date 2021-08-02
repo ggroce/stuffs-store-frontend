@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './CartIcon.styles.scss'
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg'
 import { toggleShowCart } from '../../redux/cart/cart.actions.js'
@@ -7,7 +7,15 @@ import { useSelector } from 'react-redux'
 
 const CartIcon = () => {
   const dispatch = useDispatch()
-  let itemCount = useSelector((state) => state.cart.numberOfCartItems)
+  const [itemCount, setItemCount] = useState(0)
+
+  const cartContents = useSelector((state) => state.cart.cartItems)
+
+  useEffect(() => {
+    setItemCount(
+      cartContents.reduce((acc, cartItem) => acc + cartItem.quantity, 0),
+    )
+  }, [cartContents])
 
   return (
     <div className="cart-icon" onClick={() => dispatch(toggleShowCart())}>

@@ -4,7 +4,6 @@ import { refreshCart } from './cart.utils.js'
 const INITIAL_STATE = {
   hidden: true,
   cartItems: [],
-  numberOfCartItems: 0,
 }
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -18,7 +17,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: refreshCart(state.cartItems, action.payload),
-        numberOfCartItems: state.numberOfCartItems + 1,
       }
     default:
       return state

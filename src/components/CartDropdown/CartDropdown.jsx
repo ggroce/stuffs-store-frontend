@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './CartDropdown.styles.scss'
 import CustomButton from '../CustomButton/CustomButton.jsx'
 import CartItem from '../CartItem/CartItem.jsx'
