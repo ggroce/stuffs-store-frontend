@@ -3,8 +3,7 @@ import './CartDropdown.styles.scss'
 import CustomButton from '../CustomButton/CustomButton.jsx'
 import CartItem from '../CartItem/CartItem.jsx'
 import { useSelector } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
+import { withRouter, useHistory } from 'react-router-dom'
 
 const CartDropdown = () => {
   const cart = useSelector((state) => state.cart.cartItems)

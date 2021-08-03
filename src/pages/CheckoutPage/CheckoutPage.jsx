@@ -1,10 +1,30 @@
 import React from 'react'
 import './CheckoutPage.styles.scss'
+import { useDispatch, useSelector } from 'react-redux'
 
 const CheckoutPage = () => {
+  const cartContents = useSelector((state) => state.cart.cartItems)
+  const dispatch = useDispatch()
+
   return (
-    <div>
-      <div>Checkout Page.</div>
+    <div className="checkout-page">
+      <div className="checkout-header">
+        <div className="header-block">
+          <span>Product</span>
+        </div>
+        <div className="header-block">
+          <span>Description</span>
+        </div>
+        <div className="header-block">
+          <span>Quantity</span>
+        </div>
+        <div className="header-block">
+          <span>Price</span>
+        </div>
+        <div className="header-block">
+          <span>Remove</span>
+        </div>
+      </div>
     </div>
   )
 }

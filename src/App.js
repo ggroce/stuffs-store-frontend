@@ -10,8 +10,7 @@ import CheckoutPage from './pages/CheckoutPage/CheckoutPage'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 import { setCurrentUser } from './redux/user/user.actions'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
   const dispatch = useDispatch()
