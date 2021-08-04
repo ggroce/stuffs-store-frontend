@@ -1,9 +1,14 @@
 import React from 'react'
 import './CheckoutPage.styles.scss'
 import { useDispatch, useSelector } from 'react-redux'
+import {
+  selectCartItems,
+  selectCartTotal,
+} from '../../redux/cart/cart.selectors.js'
 
 const CheckoutPage = () => {
-  const cartContents = useSelector((state) => state.cart.cartItems)
+  const cartContents = useSelector(selectCartItems)
+  const cartTotal = useSelector(selectCartTotal)
   const dispatch = useDispatch()
 
   return (

@@ -5,16 +5,17 @@ import Header from './components/Header/Header.jsx'
 import HomePage from './pages/HomePage/HomePage.jsx'
 import ShopPage from './pages/ShopPage/ShopPage.jsx'
 import NotFound from './pages/NotFound/NotFound.jsx'
-import AuthenticationPage from './pages/AuthenticationPage/AuthenticationPage'
-import CheckoutPage from './pages/CheckoutPage/CheckoutPage'
+import AuthenticationPage from './pages/AuthenticationPage/AuthenticationPage.jsx'
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage.jsx'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
-import { setCurrentUser } from './redux/user/user.actions'
 import { useDispatch, useSelector } from 'react-redux'
+import { setCurrentUser } from './redux/user/user.actions'
+import { selectCurrentUser } from './redux/user//user.selectors.js'
 
 function App() {
   const dispatch = useDispatch()
-  const { currentUser } = useSelector((state) => state.user)
+  const currentUser = useSelector(selectCurrentUser)
 
   useEffect(() => {
     let unsubscribeFromAuth = null
@@ -48,7 +49,7 @@ function App() {
           }
         />
         <Route path="/shop" component={ShopPage} />
-        <Route exact page="/checkout" component={CheckoutPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
         <Route component={NotFound} />
       </Switch>
     </div>
