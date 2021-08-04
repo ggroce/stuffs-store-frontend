@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './CheckoutPage.styles.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   selectCartItems,
   selectCartTotal,
 } from '../../redux/cart/cart.selectors.js'
+import CheckoutItem from '../../components/CheckoutItem/CheckoutItem'
 
 const CheckoutPage = () => {
   const cartItems = useSelector(selectCartItems)
@@ -30,7 +31,9 @@ const CheckoutPage = () => {
           <span>Remove</span>
         </div>
       </div>
-      {cartItems.map((cartItem) => cartItem.name)}
+      {cartItems.map((cartItem) => {
+        return <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+      })}
 
       <div className="total">
         <span>${cartTotal}</span>
