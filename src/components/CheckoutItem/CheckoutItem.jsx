@@ -2,12 +2,17 @@ import React from 'react'
 import './CheckoutItem.styles.scss'
 import { useDispatch } from 'react-redux'
 import { removeFromCart } from '../../redux/cart/cart.actions.js'
+import { addToCart } from '../../redux/cart/cart.actions.js'
 
 const CheckoutItem = ({ cartItem }) => {
   const dispatch = useDispatch()
 
-  const removeItem = () => {
-    dispatch(removeFromCart(cartItem, cartItem.quantity))
+  const removeItem = (cartItem, quantity) => {
+    dispatch(removeFromCart(cartItem, quantity))
+  }
+
+  const addItem = () => {
+    dispatch(addToCart(cartItem))
   }
 
   return (
@@ -18,13 +23,20 @@ const CheckoutItem = ({ cartItem }) => {
       <span className="name">{cartItem.name}</span>
 
       <span className="quantity">
-        <div className="arrow">&#10094;</div>
+        <div className="arrow" onClick={() => removeItem(cartItem, 1)}>
+          &#10094;
+        </div>
         <div className="value">{cartItem.quantity}</div>
-        <div className="arrow">&#10095;</div>
+        <div className="arrow" onClick={addItem}>
+          &#10095;
+        </div>
       </span>
 
       <span className="price">{cartItem.price}</span>
-      <div className="remove-button" onClick={removeItem}>
+      <div
+        className="remove-button"
+        onClick={() => removeItem(cartItem, cartItem.quantity)}
+      >
         &#10005;
       </div>
     </div>
