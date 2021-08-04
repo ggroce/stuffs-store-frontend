@@ -7,7 +7,7 @@ import {
 } from '../../redux/cart/cart.selectors.js'
 
 const CheckoutPage = () => {
-  const cartContents = useSelector(selectCartItems)
+  const cartItems = useSelector(selectCartItems)
   const cartTotal = useSelector(selectCartTotal)
   const dispatch = useDispatch()
 
@@ -29,6 +29,11 @@ const CheckoutPage = () => {
         <div className="header-block">
           <span>Remove</span>
         </div>
+      </div>
+      {cartItems.map((cartItem) => cartItem.name)}
+
+      <div className="total">
+        <span>${cartTotal}</span>
       </div>
     </div>
   )
