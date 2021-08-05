@@ -1,11 +1,14 @@
 import React from 'react'
-import SHOP_DATA from './ShopPage.data.js'
+import { useSelector } from 'react-redux'
+import { selectCollections } from '../../redux/shop/shop.selectors.js'
 import CollectionPreview from '../../components/CollectionPreview/CollectionPreview.jsx'
 
 const ShopPage = () => {
+  const shopData = useSelector(selectCollections)
+
   return (
     <div className="shop-page">
-      {SHOP_DATA.map(({ id, ...otherShopDataProps }) => (
+      {shopData.map(({ id, ...otherShopDataProps }) => (
         <CollectionPreview key={id} {...otherShopDataProps} />
       ))}
     </div>
