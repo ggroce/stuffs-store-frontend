@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
-import './CheckoutPage.styles.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from "react";
+import "./CheckoutPage.styles.scss";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectCartItems,
   selectCartTotal,
-} from '../../redux/cart/cart.selectors.js'
-import CheckoutItem from '../../components/CheckoutItem/CheckoutItem'
+} from "../../redux/cart/cart.selectors.js";
+import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
 
 const CheckoutPage = () => {
-  const cartItems = useSelector(selectCartItems)
-  const cartTotal = useSelector(selectCartTotal)
-  const dispatch = useDispatch()
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
+  const dispatch = useDispatch();
 
   return (
     <div className="checkout-page">
@@ -32,14 +32,14 @@ const CheckoutPage = () => {
         </div>
       </div>
       {cartItems.map((cartItem) => {
-        return <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+        return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
       })}
 
       <div className="total">
         <span>${cartTotal}</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckoutPage
+export default CheckoutPage;

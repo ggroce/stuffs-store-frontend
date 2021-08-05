@@ -1,21 +1,21 @@
-import React from 'react'
-import './Header.styles.scss'
-import { Link } from 'react-router-dom'
-import { ReactComponent as Logo } from '../../assets/crown.svg'
-import { auth } from '../../firebase/firebase.utils.js'
-import { useSelector } from 'react-redux'
-import CartIcon from '../CartIcon/CartIcon.jsx'
-import CartDropdown from '../CartDropdown/CartDropdown.jsx'
-import { selectCurrentUser } from '../../redux/user/user.selectors.js'
-import { selectShowCart } from '../../redux/cart/cart.selectors.js'
+import React from "react";
+import "./Header.styles.scss";
+import { Link } from "react-router-dom";
+import { ReactComponent as Logo } from "../../assets/crown.svg";
+import { auth } from "../../firebase/firebase.utils.js";
+import { useSelector } from "react-redux";
+import CartIcon from "../CartIcon/CartIcon.jsx";
+import CartDropdown from "../CartDropdown/CartDropdown.jsx";
+import { selectCurrentUser } from "../../redux/user/user.selectors.js";
+import { selectShowCart } from "../../redux/cart/cart.selectors.js";
 
 const Header = () => {
-  const currentUser = useSelector(selectCurrentUser)
-  const showCart = useSelector(selectShowCart)
+  const currentUser = useSelector(selectCurrentUser);
+  const showCart = useSelector(selectShowCart);
 
   const logoutUser = () => {
-    auth.signOut()
-  }
+    auth.signOut();
+  };
 
   return (
     <div className="header">
@@ -38,7 +38,7 @@ const Header = () => {
             </div>
             <div className="logged-in-as">
               LOGGED IN AS: {currentUser.displayName.substring(0, 14)}
-              {currentUser.displayName.length > 15 && '...'}
+              {currentUser.displayName.length > 15 && "..."}
             </div>
           </>
         ) : (
@@ -51,7 +51,7 @@ const Header = () => {
       </div>
       {!showCart && <CartDropdown />}
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

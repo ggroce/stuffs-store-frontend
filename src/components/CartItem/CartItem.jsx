@@ -1,8 +1,8 @@
-import React from 'react'
-import './CartItem.styles.scss'
+import React from "react";
+import "./CartItem.styles.scss";
 
 const CartItem = ({ item }) => {
-  const { name, price, quantity, imageUrl } = item
+  const { name, price, quantity, imageUrl } = item;
 
   return (
     <div className="cart-item">
@@ -14,7 +14,7 @@ const CartItem = ({ item }) => {
         </span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartItem
+export default CartItem;

@@ -1,19 +1,19 @@
-import React from 'react'
-import './CheckoutItem.styles.scss'
-import { useDispatch } from 'react-redux'
-import { removeFromCart } from '../../redux/cart/cart.actions.js'
-import { addToCart } from '../../redux/cart/cart.actions.js'
+import React from "react";
+import "./CheckoutItem.styles.scss";
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../../redux/cart/cart.actions.js";
+import { addToCart } from "../../redux/cart/cart.actions.js";
 
 const CheckoutItem = ({ cartItem }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const removeItem = (cartItem, quantity) => {
-    dispatch(removeFromCart(cartItem, quantity))
-  }
+    dispatch(removeFromCart(cartItem, quantity));
+  };
 
   const addItem = () => {
-    dispatch(addToCart(cartItem))
-  }
+    dispatch(addToCart(cartItem));
+  };
 
   return (
     <div className="checkout-item">
@@ -40,7 +40,7 @@ const CheckoutItem = ({ cartItem }) => {
         &#10005;
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckoutItem
+export default CheckoutItem;

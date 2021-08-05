@@ -1,50 +1,50 @@
-import React from 'react'
-import './SignUp.styles.scss'
-import FormInput from '../FormInput/FormInput'
-import CustomButton from '../CustomButton/CustomButton'
+import React from "react";
+import "./SignUp.styles.scss";
+import FormInput from "../FormInput/FormInput";
+import CustomButton from "../CustomButton/CustomButton";
 import {
   auth,
   createUserProfileDocument,
-} from '../../firebase/firebase.utils.js'
+} from "../../firebase/firebase.utils.js";
 
 const SignUp = () => {
   const [accountInfo, setaccountInfo] = React.useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-    displayName: '',
-  })
+    email: "",
+    password: "",
+    confirmPassword: "",
+    displayName: "",
+  });
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (accountInfo.password !== accountInfo.confirmPassword) {
-      return alert('Passwords do not match')
+      return alert("Passwords do not match");
     }
 
     try {
       const { user } = await auth.createUserWithEmailAndPassword(
         accountInfo.email,
-        accountInfo.password,
-      )
+        accountInfo.password
+      );
 
       await createUserProfileDocument(user, {
         displayName: accountInfo.displayName,
-      })
+      });
       setaccountInfo({
-        email: '',
-        password: '',
-        confirmPassword: '',
-        displayName: '',
-      })
+        email: "",
+        password: "",
+        confirmPassword: "",
+        displayName: "",
+      });
     } catch (error) {
-      return alert(error)
+      return alert(error);
     }
-  }
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setaccountInfo({ ...accountInfo, [name]: value })
-  }
+    const { name, value } = e.target;
+    setaccountInfo({ ...accountInfo, [name]: value });
+  };
 
   return (
     <div className="sign-up">
@@ -86,7 +86,7 @@ const SignUp = () => {
         <CustomButton type="submit">SIGN UP</CustomButton>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

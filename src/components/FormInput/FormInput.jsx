@@ -1,5 +1,5 @@
-import React from 'react'
-import './FormInput.styles.scss'
+import React from "react";
+import "./FormInput.styles.scss";
 
 const FormInput = ({ handleChange, label, ...otherFormProps }) => {
   return (
@@ -13,14 +13,14 @@ const FormInput = ({ handleChange, label, ...otherFormProps }) => {
       {label && (
         <label
           className={`form-input-label ${
-            otherFormProps.value.length && 'shrink'
+            otherFormProps.value.length && "shrink"
           }`}
         >
           {label}
         </label>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default FormInput
+export default FormInput;

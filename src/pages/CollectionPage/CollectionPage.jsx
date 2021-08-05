@@ -1,13 +1,13 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import './CollectionPage.styles.scss'
-import CollectionItem from '../../components/CollectionItem/CollectionItem.jsx'
-import { selectCollection } from '../../redux/shop/shop.selectors.js'
+import React from "react";
+import { useSelector } from "react-redux";
+import "./CollectionPage.styles.scss";
+import CollectionItem from "../../components/CollectionItem/CollectionItem.jsx";
+import { selectCollection } from "../../redux/shop/shop.selectors.js";
 
 const CollectionPage = ({ match }) => {
   const { title, items } = useSelector(
-    selectCollection(match.params.collectionId),
-  )
+    selectCollection(match.params.collectionId)
+  );
 
   return (
     <div className="collection-page">
@@ -18,7 +18,7 @@ const CollectionPage = ({ match }) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CollectionPage
+export default CollectionPage;

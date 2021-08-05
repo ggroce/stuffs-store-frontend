@@ -1,16 +1,16 @@
-import React from 'react'
-import './CollectionItem.styles.scss'
-import CustomButton from '../CustomButton/CustomButton'
-import { useDispatch } from 'react-redux'
-import { addToCart } from '../../redux/cart/cart.actions.js'
+import React from "react";
+import "./CollectionItem.styles.scss";
+import CustomButton from "../CustomButton/CustomButton";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cart/cart.actions.js";
 
 const CollectionItem = ({ item }) => {
-  const { name, price, imageUrl } = item
-  const dispatch = useDispatch()
+  const { name, price, imageUrl } = item;
+  const dispatch = useDispatch();
 
   const handleAddToCart = (item) => {
-    dispatch(addToCart(item))
-  }
+    dispatch(addToCart(item));
+  };
 
   return (
     <div className="collection-item">
@@ -26,7 +26,7 @@ const CollectionItem = ({ item }) => {
         ADD TO CART
       </CustomButton>
     </div>
-  )
-}
+  );
+};
 
-export default CollectionItem
+export default CollectionItem;

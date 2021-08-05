@@ -1,44 +1,46 @@
-import React, { useEffect, lazy, Suspense } from 'react'
-import './App.scss'
-import { Switch, Route, Redirect } from 'react-router'
-import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+import React, { useEffect, lazy, Suspense } from "react";
+import "./App.scss";
+import { Switch, Route, Redirect } from "react-router";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
-import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentUser } from './redux/user/user.actions'
-import { selectCurrentUser } from './redux/user//user.selectors.js'
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentUser } from "./redux/user/user.actions";
+import { selectCurrentUser } from "./redux/user//user.selectors.js";
 
-import Header from './components/Header/Header.jsx'
+import Header from "./components/Header/Header.jsx";
 
-const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'))
-const ShopPage = lazy(() => import('./pages/ShopPage/ShopPage.jsx'))
+const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
+const ShopPage = lazy(() => import("./pages/ShopPage/ShopPage.jsx"));
 const AuthenticationPage = lazy(() =>
-  import('./pages/AuthenticationPage/AuthenticationPage.jsx'),
-)
-const CheckoutPage = lazy(() => import('./pages/CheckoutPage/CheckoutPage.jsx'))
-const NotFound = lazy(() => import('./pages/NotFound/NotFound.jsx'))
+  import("./pages/AuthenticationPage/AuthenticationPage.jsx")
+);
+const CheckoutPage = lazy(() =>
+  import("./pages/CheckoutPage/CheckoutPage.jsx")
+);
+const NotFound = lazy(() => import("./pages/NotFound/NotFound.jsx"));
 
 function App() {
-  const dispatch = useDispatch()
-  const currentUser = useSelector(selectCurrentUser)
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    let unsubscribeFromAuth = null
+    let unsubscribeFromAuth = null;
     unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth)
+        const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot((snapShot) => {
-          dispatch(setCurrentUser(snapShot.data()))
-        })
+          dispatch(setCurrentUser(snapShot.data()));
+        });
       } else {
-        dispatch(setCurrentUser(userAuth))
+        dispatch(setCurrentUser(userAuth));
       }
-    })
+    });
 
     return () => {
-      unsubscribeFromAuth && unsubscribeFromAuth()
-    }
-  }, [])
+      unsubscribeFromAuth && unsubscribeFromAuth();
+    };
+  }, []);
 
   return (
     <div>
@@ -59,7 +61,7 @@ function App() {
         </Switch>
       </Suspense>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

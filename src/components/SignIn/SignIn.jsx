@@ -1,35 +1,35 @@
-import React from 'react'
-import './SignIn.styles.scss'
-import FormInput from '../FormInput/FormInput'
-import CustomButton from '../CustomButton/CustomButton'
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils.js'
+import React from "react";
+import "./SignIn.styles.scss";
+import FormInput from "../FormInput/FormInput";
+import CustomButton from "../CustomButton/CustomButton";
+import { auth, signInWithGoogle } from "../../firebase/firebase.utils.js";
 
 const SignIn = () => {
   const [loginCredentials, setLoginCredentials] = React.useState({
-    email: '',
-    password: '',
-  })
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       await auth.signInWithEmailAndPassword(
         loginCredentials.email,
-        loginCredentials.password,
-      )
-      setLoginCredentials({ email: '', password: '' })
+        loginCredentials.password
+      );
+      setLoginCredentials({ email: "", password: "" });
     } catch (error) {
       console.log(
-        'Error signing in with email and password in SignIn.jsx',
-        error,
-      )
+        "Error signing in with email and password in SignIn.jsx",
+        error
+      );
     }
-  }
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setLoginCredentials({ ...loginCredentials, [name]: value })
-  }
+    const { name, value } = e.target;
+    setLoginCredentials({ ...loginCredentials, [name]: value });
+  };
 
   return (
     <div className="sign-in">
@@ -61,7 +61,7 @@ const SignIn = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
