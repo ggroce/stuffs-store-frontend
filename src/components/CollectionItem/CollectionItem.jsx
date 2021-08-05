@@ -16,7 +16,7 @@ const CollectionItem = ({ item }) => {
     <div className="collection-item">
       <div
         className="image"
-        style={{ background: `url(${imageUrl}) no-repeat` }}
+        style={{ background: `url(${imageUrl})  no-repeat` }}
       />
       <div className="collection-footer">
         <span className="name">{name}</span>
