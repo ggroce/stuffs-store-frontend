@@ -7,5 +7,6 @@
 * Firebase being used for user auth
 * Stripe integrated for payments
 
+#### Todo: 
 - [ ] Update Stripe package/component to a newer version, possibly refactor into a new component rather than modal
 - [ ] Create function to clear cart contents on Stripe transaction success
