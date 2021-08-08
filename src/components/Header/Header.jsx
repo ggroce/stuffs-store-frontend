@@ -1,13 +1,16 @@
 import React from "react";
-import "./Header.styles.scss";
-import { Link } from "react-router-dom";
-import { ReactComponent as Logo } from "../../assets/crown.svg";
-import { auth } from "../../firebase/firebase.utils.js";
+import * as S from "./Header.styles.js";
+
+import { ReactComponent as Logo } from "assets/crown.svg";
+
+import { auth } from "firebase/firebase.utils.js";
+
 import { useSelector } from "react-redux";
-import CartIcon from "../CartIcon/CartIcon.jsx";
-import CartDropdown from "../CartDropdown/CartDropdown.jsx";
-import { selectCurrentUser } from "../../redux/user/user.selectors.js";
-import { selectShowCart } from "../../redux/cart/cart.selectors.js";
+import { selectCurrentUser } from "redux/user/user.selectors.js";
+import { selectShowCart } from "redux/cart/cart.selectors.js";
+
+import CartIcon from "components/CartIcon/CartIcon.jsx";
+import CartDropdown from "components/CartDropdown/CartDropdown.jsx";
 
 const Header = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -18,39 +21,31 @@ const Header = () => {
   };
 
   return (
-    <div className="header">
-      <Link className="logo-container" to="/">
-        <Logo className="logo" />
-      </Link>
+    <S.HeaderContainer>
+      <S.LogoContainer to="/">
+        <Logo />
+      </S.LogoContainer>
 
-      <div className="options">
-        <Link className="option" to="/shop">
-          SHOP
-        </Link>
-        <Link className="option" to="/contact">
-          CONTACT
-        </Link>
+      <S.OptionsContainer>
+        <S.OptionLink to="/shop">SHOP</S.OptionLink>
+        <S.OptionLink to="/contact">CONTACT</S.OptionLink>
 
         {currentUser ? (
           <>
-            <div className="option" onClick={logoutUser}>
-              LOGOUT
-            </div>
-            <div className="logged-in-as">
+            <S.OptionDiv onClick={logoutUser}>LOGOUT</S.OptionDiv>
+            <S.LoggedInAsContainer>
               LOGGED IN AS: {currentUser.displayName.substring(0, 14)}
               {currentUser.displayName.length > 15 && "..."}
-            </div>
+            </S.LoggedInAsContainer>
           </>
         ) : (
-          <Link className="option" to="/auth">
-            LOGIN
-          </Link>
+          <S.OptionLink to="/auth">LOGIN</S.OptionLink>
         )}
 
         <CartIcon />
-      </div>
+      </S.OptionsContainer>
       {!showCart && <CartDropdown />}
-    </div>
+    </S.HeaderContainer>
   );
 };
 

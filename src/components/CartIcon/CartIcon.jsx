@@ -1,9 +1,9 @@
 import React from "react";
-import "./CartIcon.styles.scss";
-import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
-import { toggleShowCart } from "../../redux/cart/cart.actions.js";
+import * as S from "./CartIcon.styles.js";
+
 import { useDispatch, useSelector } from "react-redux";
-import { selectCartItemsCount } from "../../redux/cart/cart.selectors.js";
+import { toggleShowCart } from "redux/cart/cart.actions.js";
+import { selectCartItemsCount } from "redux/cart/cart.selectors.js";
 
 const CartIcon = () => {
   const dispatch = useDispatch();
@@ -11,10 +11,10 @@ const CartIcon = () => {
   const itemCount = useSelector(selectCartItemsCount);
 
   return (
-    <div className="cart-icon" onClick={() => dispatch(toggleShowCart())}>
-      <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">{itemCount}</span>
-    </div>
+    <S.CartIcon onClick={() => dispatch(toggleShowCart())}>
+      <S.ShoppingIconStyled className="shopping-icon" />
+      <S.ItemCountSpan>{itemCount}</S.ItemCountSpan>
+    </S.CartIcon>
   );
 };
 

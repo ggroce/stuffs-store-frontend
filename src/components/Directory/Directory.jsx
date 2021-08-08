@@ -7,11 +7,11 @@ import MenuItem from "../MenuItem/MenuItem.jsx";
 const Directory = () => {
   const sections = useSelector(selectDirectorySections);
   return (
-    <>
+    <div className="directory-menu">
       {sections.map(({ id, ...otherSectionProps }) => (
         <MenuItem key={id} {...otherSectionProps} />
       ))}
-    </>
+    </div>
   );
 };
 
