@@ -1,46 +1,44 @@
-import React, { useEffect } from "react";
-import "./CheckoutPage.styles.scss";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectCartItems,
-  selectCartTotal,
-} from "../../redux/cart/cart.selectors.js";
-import CheckoutItem from "../../components/CheckoutItem/CheckoutItem.jsx";
-import StripeCheckoutButton from "../../components/StripeCheckoutButton/StripeCheckoutButton.jsx";
+import React from "react";
+import * as S from "./CheckoutPage.styles.js";
+
+import { useSelector } from "react-redux";
+import { selectCartItems, selectCartTotal } from "redux/cart/cart.selectors.js";
+
+import CheckoutItem from "components/CheckoutItem/CheckoutItem.jsx";
+import StripeCheckoutButton from "components/StripeCheckoutButton/StripeCheckoutButton.jsx";
 
 const CheckoutPage = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
-  const dispatch = useDispatch();
 
   return (
-    <div className="checkout-page">
-      <div className="checkout-header">
-        <div className="header-block">
+    <S.CheckoutPageContainer>
+      <S.CheckoutHeaderContainer>
+        <S.HeaderBlockContainer>
           <span>Product</span>
-        </div>
-        <div className="header-block">
+        </S.HeaderBlockContainer>
+        <S.HeaderBlockContainer>
           <span>Description</span>
-        </div>
-        <div className="header-block">
+        </S.HeaderBlockContainer>
+        <S.HeaderBlockContainer>
           <span>Quantity</span>
-        </div>
-        <div className="header-block">
+        </S.HeaderBlockContainer>
+        <S.HeaderBlockContainer>
           <span>Price</span>
-        </div>
-        <div className="header-block">
+        </S.HeaderBlockContainer>
+        <S.HeaderBlockContainer>
           <span>Remove</span>
-        </div>
-      </div>
+        </S.HeaderBlockContainer>
+      </S.CheckoutHeaderContainer>
       {cartItems.map((cartItem) => {
         return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
       })}
 
-      <div className="total">
+      <S.TotalContainer>
         <span>${cartTotal}</span>
-      </div>
+      </S.TotalContainer>
       <StripeCheckoutButton price={cartTotal} />
-    </div>
+    </S.CheckoutPageContainer>
   );
 };
 

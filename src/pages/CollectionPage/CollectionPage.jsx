@@ -1,8 +1,10 @@
 import React from "react";
+import * as S from "./CollectionPage.styles.js";
+
 import { useSelector } from "react-redux";
-import "./CollectionPage.styles.scss";
-import CollectionItem from "../../components/CollectionItem/CollectionItem.jsx";
-import { selectCollection } from "../../redux/shop/shop.selectors.js";
+import { selectCollection } from "redux/shop/shop.selectors.js";
+
+import CollectionItem from "components/CollectionItem/CollectionItem.jsx";
 
 const CollectionPage = ({ match }) => {
   const { title, items } = useSelector(
@@ -10,14 +12,14 @@ const CollectionPage = ({ match }) => {
   );
 
   return (
-    <div className="collection-page">
-      <h2 className="title">{title}</h2>
-      <div className="items">
+    <S.CollectionPageContainer>
+      <h2>{title}</h2>
+      <S.ItemsContainer>
         {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
-      </div>
-    </div>
+      </S.ItemsContainer>
+    </S.CollectionPageContainer>
   );
 };
 

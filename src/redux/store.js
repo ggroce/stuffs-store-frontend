@@ -1,7 +1,9 @@
 import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
-import rootReducer from "./root.reducer.js";
+
 import { persistStore } from "redux-persist";
+
+import rootReducer from "./root.reducer.js";
 
 const middlewares = [];
 if (process.env.NODE_ENV === "development") {

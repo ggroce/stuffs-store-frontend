@@ -1,23 +1,22 @@
 import React, { useEffect, lazy, Suspense } from "react";
-import "./App.scss";
+import "./App.css";
+
 import { Switch, Route, Redirect } from "react-router";
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "firebase/firebase.utils";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentUser } from "./redux/user/user.actions";
-import { selectCurrentUser } from "./redux/user//user.selectors.js";
+import { setCurrentUser } from "redux/user/user.actions";
+import { selectCurrentUser } from "redux/user//user.selectors.js";
 
-import Header from "./components/Header/Header.jsx";
+import Header from "components/Header/Header.jsx";
 
-const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
-const ShopPage = lazy(() => import("./pages/ShopPage/ShopPage.jsx"));
+const HomePage = lazy(() => import("pages/HomePage/HomePage.jsx"));
+const ShopPage = lazy(() => import("pages/ShopPage/ShopPage.jsx"));
 const AuthenticationPage = lazy(() =>
-  import("./pages/AuthenticationPage/AuthenticationPage.jsx")
+  import("pages/AuthenticationPage/AuthenticationPage.jsx")
 );
-const CheckoutPage = lazy(() =>
-  import("./pages/CheckoutPage/CheckoutPage.jsx")
-);
-const NotFound = lazy(() => import("./pages/NotFound/NotFound.jsx"));
+const CheckoutPage = lazy(() => import("pages/CheckoutPage/CheckoutPage.jsx"));
+const NotFound = lazy(() => import("pages/NotFound/NotFound.jsx"));
 
 function App() {
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <>
       <Header />
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
@@ -60,7 +59,7 @@ function App() {
           <Route component={NotFound} />
         </Switch>
       </Suspense>
-    </div>
+    </>
   );
 }
 

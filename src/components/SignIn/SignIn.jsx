@@ -1,8 +1,10 @@
 import React from "react";
-import "./SignIn.styles.scss";
-import FormInput from "../FormInput/FormInput";
-import CustomButton from "../CustomButton/CustomButton";
-import { auth, signInWithGoogle } from "../../firebase/firebase.utils.js";
+import * as S from "./SignIn.styles.js";
+
+import { auth, signInWithGoogle } from "firebase/firebase.utils.js";
+
+import FormInput from "components/FormInput/FormInput";
+import CustomButton from "components/CustomButton/CustomButton";
 
 const SignIn = () => {
   const [loginCredentials, setLoginCredentials] = React.useState({
@@ -32,8 +34,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className="sign-in">
-      <h2 className="title">Have account</h2>
+    <S.SignInContainer>
+      <h2>Have account</h2>
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
@@ -53,14 +55,14 @@ const SignIn = () => {
           value={loginCredentials.password}
           handleChange={handleChange}
         />
-        <div className="buttons">
+        <S.ButtonsContainer>
           <CustomButton type="submit">Sign in</CustomButton>
           <CustomButton type="button" onClick={signInWithGoogle} isGoogleSignIn>
             Sign in with Google
           </CustomButton>
-        </div>
+        </S.ButtonsContainer>
       </form>
-    </div>
+    </S.SignInContainer>
   );
 };
 
