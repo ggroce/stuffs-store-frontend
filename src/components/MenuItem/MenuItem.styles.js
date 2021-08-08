@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const BackgroundImageContainer = styled.div`
   width: 100%;
   height: 100%;
-  background-image: url(${(props) => props.imageUrl});
+  background-image: url(${(props) => props.$imageUrl});
   background-position: center;
   background-size: cover;
 `;
@@ -35,7 +35,7 @@ export const ContentContainer = styled.div`
 
 export const MenuItemContainer = styled.div`
   min-width: 30%;
-  height: ${(props) => (props.size === "large" ? "380px" : "240px")};
+  height: ${(props) => (props.$size === "large" ? "380px" : "240px")};
   flex: 1 1 auto;
   display: flex;
   align-items: center;
