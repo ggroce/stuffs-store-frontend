@@ -1,5 +1,5 @@
-## ReactJS frontend for a generic web store  
-WIP - Developing a fully featured React storefront, complete with user login, shopping cart, and multiple layers of components that host the collections of products.  
+## Stuffs Store: a ReactJS frontend for a generic web store  
+  WIP - Developing a fully featured React storefront, complete with user login, shopping cart, and multiple layers of components that host the collections of products.  
 
 ### Details on the tech and packages being used
 * ReactJS
