@@ -1,11 +1,11 @@
 ## Stuffs Store: a ReactJS frontend for a generic web store  
-  WIP - Developing a fully featured React storefront, complete with user login, shopping cart, and multiple layers of components that host the collections of products.  
+  WIP - Developing a fully featured React storefront, complete with account creation, user login, shopping cart, and multiple layers of components that host the collections of products.  
 
 ### Details on the tech and packages being used
-* ReactJS
+* ReactJS, using functional components and hooks
 * Styled Components being used throughout
 * React-router-dom used with both normal component routes and dynamic routes acting off match.params
-* Redux used for state, with Reselect for memoization and Redux-persist used for persistence 
+* Redux used for state, with Reselect for memoization and Redux-persist used for persistence between reloads and page close
 * Firebase being used for user auth and store of data, (collections of products)
 * Stripe integrated for payments
 
