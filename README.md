@@ -4,7 +4,8 @@
 ### Details on the tech and packages being used
 * ReactJS
 * Styled Components being used throughout
-* React-router-dom and Redux utilized throughout
+* React-router-dom used with both normal component routes and dynamic routes acting off match.params
+* Redux used for state, with Reselect for memoization and Redux-persist used for persistence 
 * Firebase being used for user auth and store of data, (collections of products)
 * Stripe integrated for payments
 
