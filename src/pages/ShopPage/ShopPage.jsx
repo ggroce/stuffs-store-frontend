@@ -24,16 +24,19 @@ const ShopPage = ({ match }) => {
   useEffect(() => {
     let unsubscribeFromSnapshot = null;
 
+    // onSnapshot can be used for real-time updates, but is not necessary for normal shop data.
+    // get().then() can be used to request the data without using the observer pattern,
+    // and wouldn't require unsubscribing from the snapshot on unmount.
     const collectionRef = firestore.collection("collections");
-    unsubscribeFromSnapshot = collectionRef.onSnapshot(async (snapshot) => {
+    unsubscribeFromSnapshot = collectionRef.get().then((snapshot) => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
       dispatch(loadCollections(collectionsMap));
       setIsLoading(false);
     });
 
-    return () => {
-      unsubscribeFromSnapshot && unsubscribeFromSnapshot();
-    };
+    // return () => {
+    //   unsubscribeFromSnapshot && unsubscribeFromSnapshot();
+    // };
   }, []);
 
   return (
