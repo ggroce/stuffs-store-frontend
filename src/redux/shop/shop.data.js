@@ -1,3 +1,5 @@
+// No longer called by the store.  Code retreives this data from firebase.
+
 const SHOP_DATA = {
   hats: {
     id: 1,
