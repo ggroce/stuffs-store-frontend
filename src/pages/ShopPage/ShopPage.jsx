@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
-import { useDispatch } from "react-redux";
-import { loadCollections } from "redux/shop/shop.actions.js";
+import { useDispatch, useSelector } from "react-redux";
+import { requestCollectionsStartAsync } from "redux/shop/shop.actions.js";
+import { selectIsCollectionPending } from "redux/shop/shop.selectors.js";
 
 import { Route } from "react-router-dom";
-
-import {
-  firestore,
-  convertCollectionsSnapshotToMap,
-} from "firebase/firebase.utils.js";
 
 import CollectionsOverview from "components/CollectionsOverview/CollectionsOverview.jsx";
 import CollectionPage from "pages/CollectionPage/CollectionPage.jsx";
@@ -19,24 +15,11 @@ const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 const ShopPage = ({ match }) => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useSelector(selectIsCollectionPending);
 
   useEffect(() => {
-    let unsubscribeFromSnapshot = null;
-
-    // onSnapshot can be used for real-time updates, but is not necessary for normal shop data.
-    // get().then() can be used to request the data without using the observer pattern,
-    // and wouldn't require unsubscribing from the snapshot on unmount.
-    const collectionRef = firestore.collection("collections");
-    unsubscribeFromSnapshot = collectionRef.get().then((snapshot) => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      dispatch(loadCollections(collectionsMap));
-      setIsLoading(false);
-    });
-
-    // return () => {
-    //   unsubscribeFromSnapshot && unsubscribeFromSnapshot();
-    // };
+    dispatch(requestCollectionsStartAsync());
+    // setIsLoading(false);
   }, []);
 
   return (
