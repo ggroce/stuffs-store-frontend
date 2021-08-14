@@ -18,7 +18,7 @@ export const selectCollection = (collectionUrlParam) =>
     collections ? collections[collectionUrlParam] : null
   );
 
-export const selectIsCollectionPending = createSelector(
+export const selectIsCollectionLoaded = createSelector(
   [selectShop],
-  (shop) => shop.isPending
+  (shop) => shop.collections
 );

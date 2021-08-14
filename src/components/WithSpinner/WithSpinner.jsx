@@ -3,13 +3,13 @@ import * as S from "./WithSpinner.styles.js";
 
 const WithSpinner =
   (WrappedComponent) =>
-  ({ isLoading, ...otherProps }) => {
-    return isLoading ? (
+  ({ isLoaded, ...otherProps }) => {
+    return isLoaded ? (
+      <WrappedComponent {...otherProps} />
+    ) : (
       <S.SpinnerOverlay>
         <S.SpinnerContainer />
       </S.SpinnerOverlay>
-    ) : (
-      <WrappedComponent {...otherProps} />
     );
   };
 

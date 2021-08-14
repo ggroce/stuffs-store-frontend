@@ -2,7 +2,7 @@ import ShopActionTypes from "./shop.types.js";
 
 const INITIAL_STATE = {
   collections: null,
-  isPending: true,
+  isPending: false,
   error: "",
 };
 

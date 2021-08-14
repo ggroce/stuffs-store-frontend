@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { requestCollectionsStartAsync } from "redux/shop/shop.actions.js";
-import { selectIsCollectionPending } from "redux/shop/shop.selectors.js";
+import { selectIsCollectionLoaded } from "redux/shop/shop.selectors.js";
 
 import { Route } from "react-router-dom";
 
@@ -15,11 +15,10 @@ const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 const ShopPage = ({ match }) => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsCollectionPending);
+  const isLoaded = useSelector(selectIsCollectionLoaded);
 
   useEffect(() => {
     dispatch(requestCollectionsStartAsync());
-    // setIsLoading(false);
   }, []);
 
   return (
@@ -28,13 +27,13 @@ const ShopPage = ({ match }) => {
         exact
         path={`${match.path}`}
         render={(props) => (
-          <CollectionsOverviewWithSpinner isLoading={isLoading} {...props} />
+          <CollectionsOverviewWithSpinner isLoading={isLoaded} {...props} />
         )}
       />
       <Route
         path={`${match.path}/:collectionId`}
         render={(props) => (
-          <CollectionPageWithSpinner isLoading={isLoading} {...props} />
+          <CollectionPageWithSpinner isLoaded={isLoaded} {...props} />
         )}
       />
     </>
