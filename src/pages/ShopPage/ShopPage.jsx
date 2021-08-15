@@ -1,21 +1,14 @@
 import React, { useEffect } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
-import { requestCollectionsStartAsync } from "redux/shop/shop.actions.js";
-import { selectIsCollectionLoaded } from "redux/shop/shop.selectors.js";
-
+import { useDispatch } from "react-redux";
 import { Route } from "react-router-dom";
 
-import CollectionsOverview from "components/CollectionsOverview/CollectionsOverview.jsx";
-import CollectionPage from "pages/CollectionPage/CollectionPage.jsx";
-import WithSpinner from "components/WithSpinner/WithSpinner";
+import { requestCollectionsStartAsync } from "redux/shop/shop.actions.js";
 
-const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
-const CollectionPageWithSpinner = WithSpinner(CollectionPage);
+import CollectionsOverviewContainer from "components/CollectionsOverview/CollectionsOverview.container.js";
+import CollectionPageContainer from "pages/CollectionPage/CollectionPage.container.js";
 
 const ShopPage = ({ match }) => {
   const dispatch = useDispatch();
-  const isLoaded = useSelector(selectIsCollectionLoaded);
 
   useEffect(() => {
     dispatch(requestCollectionsStartAsync());
@@ -26,15 +19,11 @@ const ShopPage = ({ match }) => {
       <Route
         exact
         path={`${match.path}`}
-        render={(props) => (
-          <CollectionsOverviewWithSpinner isLoading={isLoaded} {...props} />
-        )}
+        component={CollectionsOverviewContainer}
       />
       <Route
         path={`${match.path}/:collectionId`}
-        render={(props) => (
-          <CollectionPageWithSpinner isLoaded={isLoaded} {...props} />
-        )}
+        component={CollectionPageContainer}
       />
     </>
   );
