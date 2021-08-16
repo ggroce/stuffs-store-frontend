@@ -8,18 +8,18 @@ const INITIAL_STATE = {
 
 const shopReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ShopActionTypes.REQUEST_COLLECTIONS_START:
+    case ShopActionTypes.FETCH_COLLECTIONS_START:
       return {
         ...state,
         isPending: true,
       };
-    case ShopActionTypes.REQUEST_COLLECTIONS_SUCCESS:
+    case ShopActionTypes.FETCH_COLLECTIONS_SUCCESS:
       return {
         ...state,
         collections: action.payload,
         isPending: false,
       };
-    case ShopActionTypes.REQUEST_COLLECTIONS_ERROR:
+    case ShopActionTypes.FETCH_COLLECTIONS_ERROR:
       return {
         ...state,
         error: action.payload,
