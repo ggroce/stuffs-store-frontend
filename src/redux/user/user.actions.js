@@ -40,3 +40,18 @@ export const signOutError = (error) => ({
   type: UserActionTypes.SIGN_OUT_ERROR,
   payload: error,
 });
+
+export const emailSignUpStart = (newAccountInfo) => ({
+  type: UserActionTypes.EMAIL_SIGN_UP_START,
+  payload: newAccountInfo,
+});
+
+export const emailSignUpSuccess = ({ user, displayName }) => ({
+  type: UserActionTypes.EMAIL_SIGN_UP_SUCCESS,
+  payload: { user, displayName },
+});
+
+export const emailSignUpError = (error) => ({
+  type: UserActionTypes.EMAIL_SIGN_UP_ERROR,
+  payload: error,
+});

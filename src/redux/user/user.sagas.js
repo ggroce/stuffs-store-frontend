@@ -6,6 +6,8 @@ import {
   signInError,
   signOutSuccess,
   signOutError,
+  emailSignUpSuccess,
+  emailSignUpError,
 } from "./user.actions.js";
 
 import {
@@ -35,9 +37,11 @@ export function* signInWithEmail({ payload: { email, password } }) {
   }
 }
 
-export function* getSnapshotFromUserAuth(userAuth) {
+export function* getSnapshotFromUserAuth(userAuth, displayName = null) {
   try {
-    const userRef = yield call(createUserProfileDocument, userAuth);
+    const userRef = yield call(createUserProfileDocument, userAuth, {
+      displayName,
+    });
     const userSnapshot = yield userRef.get();
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (error) {
@@ -65,6 +69,25 @@ export function* signOutStart() {
   }
 }
 
+export function* emailSignUpStart({
+  payload: { email, password, displayName },
+}) {
+  try {
+    const { user } = yield auth.createUserWithEmailAndPassword(email, password);
+    yield put(emailSignUpSuccess({ user, displayName }));
+  } catch (error) {
+    yield put(emailSignUpError(error));
+  }
+}
+
+export function* emailLoginAfterSignUp({ payload: { user, displayName } }) {
+  try {
+    yield getSnapshotFromUserAuth(user, displayName);
+  } catch (error) {
+    yield put(signInError(error));
+  }
+}
+
 export function* onGoogleSignInStart() {
   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
@@ -81,11 +104,24 @@ export function* onSignOutStart() {
   yield takeLatest(UserActionTypes.SIGN_OUT_START, signOutStart);
 }
 
+export function* onEmailSignUpStart() {
+  yield takeLatest(UserActionTypes.EMAIL_SIGN_UP_START, emailSignUpStart);
+}
+
+export function* onEmailSignUpSuccess() {
+  yield takeLatest(
+    UserActionTypes.EMAIL_SIGN_UP_SUCCESS,
+    emailLoginAfterSignUp
+  );
+}
+
 export function* userSagas() {
   yield all([
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
     call(onCheckUserSession),
     call(onSignOutStart),
+    call(onEmailSignUpStart),
+    call(onEmailSignUpSuccess),
   ]);
 }
