@@ -6,6 +6,7 @@
 * Styled Components being used throughout
 * React-router-dom used with both normal component routes and dynamic routes acting off match.params
 * Redux used for state, with Reselect for memoization and Redux-persist used for persistence between reloads and page close
+* Redux-saga used extensively for handling and monitoring all dispatched actions
 * Firebase being used for user auth and store of data, (collections of products)
 * Stripe integrated for payments
 
