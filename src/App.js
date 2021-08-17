@@ -1,12 +1,11 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import "./App.css";
 
 import { Switch, Route, Redirect } from "react-router";
-import { auth, createUserProfileDocument } from "firebase/firebase.utils";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentUser } from "redux/user/user.actions";
 import { selectCurrentUser } from "redux/user//user.selectors.js";
+import { checkUserSession } from "redux/user/user.actions";
 
 import Header from "components/Header/Header.jsx";
 
@@ -19,26 +18,11 @@ const CheckoutPage = lazy(() => import("pages/CheckoutPage/CheckoutPage.jsx"));
 const NotFound = lazy(() => import("pages/NotFound/NotFound.jsx"));
 
 function App() {
-  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    let unsubscribeFromAuth = null;
-    unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot((snapShot) => {
-          dispatch(setCurrentUser(snapShot.data()));
-        });
-      } else {
-        dispatch(setCurrentUser(userAuth));
-      }
-    });
-
-    return () => {
-      unsubscribeFromAuth && unsubscribeFromAuth();
-    };
+    dispatch(checkUserSession());
   }, []);
 
   return (

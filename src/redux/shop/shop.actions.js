@@ -9,7 +9,7 @@ export const fetchCollectionsSuccess = (collectionsMap) => ({
   payload: collectionsMap,
 });
 
-export const fetchCollectionsFailure = (error) => ({
+export const fetchCollectionsError = (error) => ({
   type: ShopActionTypes.FETCH_COLLECTIONS_ERROR,
   payload: error,
 });

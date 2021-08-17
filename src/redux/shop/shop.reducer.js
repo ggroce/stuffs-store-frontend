@@ -18,6 +18,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         collections: action.payload,
         isPending: false,
+        error: "",
       };
     case ShopActionTypes.FETCH_COLLECTIONS_ERROR:
       return {
