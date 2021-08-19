@@ -12,7 +12,7 @@ const ShopPage = ({ match }) => {
 
   useEffect(() => {
     dispatch(fetchCollectionsStart());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
