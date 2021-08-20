@@ -52,6 +52,10 @@ export const MenuItemContainer = styled.div`
     margin-left: 7.5px;
   }
 
+  @media screen and (max-width: 45em) {
+    height: 200px;
+  }
+
   &:hover {
     cursor: pointer;
 

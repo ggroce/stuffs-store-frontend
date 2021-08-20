@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import "./App.css";
+import { GlobalStyle } from "global.styles.js";
 
 import { Switch, Route, Redirect } from "react-router";
 
@@ -27,6 +27,7 @@ function App() {
 
   return (
     <>
+      <GlobalStyle />
       <Header />
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>

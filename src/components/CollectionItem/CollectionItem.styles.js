@@ -16,6 +16,13 @@ export const CollectionItemAddButton = styled(CustomButton)`
   position: absolute;
   top: 255px;
   display: none;
+
+  @media screen and (max-width: 40em) {
+    display: block;
+    opacity: 0.9;
+    min-width: unset;
+    padding: 0 10px;
+  }
 `;
 
 export const CollectionItemContainer = styled.div`
@@ -36,6 +43,21 @@ export const CollectionItemContainer = styled.div`
     ${CollectionItemAddButton} {
       opacity: 0.85;
       display: flex;
+    }
+  }
+
+  @media screen and (max-width: 40em) {
+    width: 40vw;
+
+    &:hover {
+      ${CollectionItemImageContainer} {
+        opacity: unset;
+      }
+
+      ${CollectionItemAddButton} {
+        opacity: unset;
+        display: flex;
+      }
     }
   }
 `;
