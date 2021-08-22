@@ -12,7 +12,7 @@ import {
   fetchCollectionsError,
 } from "./shop.actions.js";
 
-export function* fetchCollectionsAsync() {
+export function* handleFetchCollectionsAsync() {
   try {
     const collectionRef = firestore.collection("collections");
     const snapshot = yield collectionRef.get();
@@ -26,13 +26,13 @@ export function* fetchCollectionsAsync() {
   }
 }
 
-export function* fetchCollectionsStart() {
+export function* watchFetchCollectionsStart() {
   yield takeLatest(
     ShopActionTypes.FETCH_COLLECTIONS_START,
-    fetchCollectionsAsync
+    handleFetchCollectionsAsync
   );
 }
 
 export function* shopSagas() {
-  yield all([call(fetchCollectionsStart)]);
+  yield all([call(watchFetchCollectionsStart)]);
 }
