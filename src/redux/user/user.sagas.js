@@ -17,7 +17,7 @@ import {
   getCurrentUser,
 } from "firebase/firebase.utils.js";
 
-export function* signInWithGoogle() {
+export function* handleSignInWithGoogle() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
     yield getSnapshotFromUserAuth(user);
@@ -27,7 +27,7 @@ export function* signInWithGoogle() {
   }
 }
 
-export function* signInWithEmail({ payload: { email, password } }) {
+export function* handleSignInWithEmail({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
@@ -50,7 +50,7 @@ export function* getSnapshotFromUserAuth(userAuth, displayName = null) {
   }
 }
 
-export function* checkUserSession() {
+export function* handleCheckUserSession() {
   try {
     const userAuth = yield getCurrentUser();
     if (!userAuth) return;
@@ -60,7 +60,7 @@ export function* checkUserSession() {
   }
 }
 
-export function* signOutStart() {
+export function* handleSignOutStart() {
   try {
     yield auth.signOut();
     yield put(signOutSuccess());
@@ -69,7 +69,7 @@ export function* signOutStart() {
   }
 }
 
-export function* emailSignUpStart({
+export function* handleEmailSignUpStart({
   payload: { email, password, displayName },
 }) {
   try {
@@ -80,7 +80,9 @@ export function* emailSignUpStart({
   }
 }
 
-export function* emailLoginAfterSignUp({ payload: { user, displayName } }) {
+export function* handleEmailLoginAfterSignUp({
+  payload: { user, displayName },
+}) {
   try {
     yield getSnapshotFromUserAuth(user, displayName);
   } catch (error) {
@@ -88,40 +90,43 @@ export function* emailLoginAfterSignUp({ payload: { user, displayName } }) {
   }
 }
 
-export function* onGoogleSignInStart() {
-  yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
+export function* watchGoogleSignInStart() {
+  yield takeLatest(
+    UserActionTypes.GOOGLE_SIGN_IN_START,
+    handleSignInWithGoogle
+  );
 }
 
-export function* onEmailSignInStart() {
-  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+export function* watchEmailSignInStart() {
+  yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, handleSignInWithEmail);
 }
 
-export function* onCheckUserSession() {
-  yield takeLatest(UserActionTypes.CHECK_USER_SESSION, checkUserSession);
+export function* watchCheckUserSession() {
+  yield takeLatest(UserActionTypes.CHECK_USER_SESSION, handleCheckUserSession);
 }
 
-export function* onSignOutStart() {
-  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOutStart);
+export function* watchSignOutStart() {
+  yield takeLatest(UserActionTypes.SIGN_OUT_START, handleSignOutStart);
 }
 
-export function* onEmailSignUpStart() {
-  yield takeLatest(UserActionTypes.EMAIL_SIGN_UP_START, emailSignUpStart);
+export function* watchEmailSignUpStart() {
+  yield takeLatest(UserActionTypes.EMAIL_SIGN_UP_START, handleEmailSignUpStart);
 }
 
-export function* onEmailSignUpSuccess() {
+export function* watchEmailSignUpSuccess() {
   yield takeLatest(
     UserActionTypes.EMAIL_SIGN_UP_SUCCESS,
-    emailLoginAfterSignUp
+    handleEmailLoginAfterSignUp
   );
 }
 
 export function* userSagas() {
   yield all([
-    call(onGoogleSignInStart),
-    call(onEmailSignInStart),
-    call(onCheckUserSession),
-    call(onSignOutStart),
-    call(onEmailSignUpStart),
-    call(onEmailSignUpSuccess),
+    call(watchGoogleSignInStart),
+    call(watchEmailSignInStart),
+    call(watchCheckUserSession),
+    call(watchSignOutStart),
+    call(watchEmailSignUpStart),
+    call(watchEmailSignUpSuccess),
   ]);
 }

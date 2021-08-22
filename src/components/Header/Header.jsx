@@ -10,7 +10,7 @@ import { selectShowCart } from "redux/cart/cart.selectors.js";
 import { signOutStart } from "redux/user/user.actions.js";
 
 import CartIcon from "components/CartIcon/CartIcon.jsx";
-import CartDropdown from "components/CartDropdown/CartDropdown.jsx";
+import CartDropdownWrapper from "components/CartDropdownWrapper/CartDropdownWrapper.jsx";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Header = () => {
 
         <CartIcon />
       </S.OptionsContainer>
-      {!showCart && <CartDropdown />}
+      {!showCart ? <CartDropdownWrapper /> : null}
     </S.HeaderContainer>
   );
 };

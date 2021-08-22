@@ -1,7 +1,11 @@
 import CartActionTypes from "./cart.types.js";
 
-export const toggleShowCart = () => ({
-  type: CartActionTypes.TOGGLE_CART_HIDDEN,
+export const toggleShowCartStart = () => ({
+  type: CartActionTypes.TOGGLE_CART_START,
+});
+
+export const toggleShowCartSuccess = () => ({
+  type: CartActionTypes.TOGGLE_CART_SUCCESS,
 });
 
 export const addToCart = (item) => ({

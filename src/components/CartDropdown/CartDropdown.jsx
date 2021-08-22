@@ -7,7 +7,7 @@ import * as S from "./CartDropdown.styles.js";
 import CartItem from "components/CartItem/CartItem.jsx";
 
 import { selectCartItems } from "redux/cart/cart.selectors.js";
-import { toggleShowCart } from "redux/cart/cart.actions.js";
+import { toggleShowCartStart } from "redux/cart/cart.actions.js";
 
 const CartDropdown = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const CartDropdown = () => {
   const history = useHistory();
 
   const handleGoToCheckout = () => {
-    dispatch(toggleShowCart());
+    dispatch(toggleShowCartStart());
     history.push("/checkout");
   };
 
