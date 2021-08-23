@@ -25,3 +25,7 @@ export const CollectionCategoryContainer = styled.div`
     grid-gap: 15px;
   }
 `;
+
+export const CollectionItemContainer = styled.div`
+  margin-right: 5px;
+`;

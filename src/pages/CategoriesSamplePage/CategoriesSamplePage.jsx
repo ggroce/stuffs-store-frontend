@@ -7,7 +7,7 @@ import { fetchCollectionsStart } from "redux/shop/shop.actions.js";
 import CollectionsOverviewContainer from "components/CollectionsOverview/CollectionsOverview.container.js";
 import CollectionPageContainer from "pages/CollectionPage/CollectionPage.container.js";
 
-const ShopPage = ({ match }) => {
+const CategoriesSamplePage = ({ match }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const ShopPage = ({ match }) => {
   );
 };
 
-export default ShopPage;
+export default CategoriesSamplePage;

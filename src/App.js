@@ -10,7 +10,9 @@ import { checkUserSession } from "redux/user/user.actions";
 import Header from "components/Header/Header.jsx";
 
 const HomePage = lazy(() => import("pages/HomePage/HomePage.jsx"));
-const ShopPage = lazy(() => import("pages/ShopPage/ShopPage.jsx"));
+const CategoriesSamplePage = lazy(() =>
+  import("pages/CategoriesSamplePage/CategoriesSamplePage.jsx")
+);
 const AuthenticationPage = lazy(() =>
   import("pages/AuthenticationPage/AuthenticationPage.jsx")
 );
@@ -39,7 +41,7 @@ function App() {
               currentUser ? <Redirect to="/" /> : <AuthenticationPage />
             }
           />
-          <Route path="/shop" component={ShopPage} />
+          <Route path="/shop" component={CategoriesSamplePage} />
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route component={NotFound} />
         </Switch>

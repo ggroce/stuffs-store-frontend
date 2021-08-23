@@ -10,7 +10,9 @@ const CollectionPreview = ({ title, items }) => (
       {items
         .filter((item, index) => index < 4)
         .map((item) => (
-          <CollectionItem key={item.id} item={item} />
+          <S.CollectionItemContainer key={item.id}>
+            <CollectionItem item={item} />
+          </S.CollectionItemContainer>
         ))}
     </S.CollectionCategoryContainer>
   </S.CollectionPreviewContainer>
