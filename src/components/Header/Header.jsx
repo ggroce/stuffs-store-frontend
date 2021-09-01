@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./Header.styles.js";
 
-import { ReactComponent as Logo } from "assets/crown.svg";
+import { ReactComponent as Logo } from "assets/coffeecup.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "redux/user/user.selectors.js";
