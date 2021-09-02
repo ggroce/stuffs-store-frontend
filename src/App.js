@@ -8,6 +8,7 @@ import { selectCurrentUser } from "redux/user//user.selectors.js";
 import { checkUserSession } from "redux/user/user.actions";
 
 import Header from "components/Header/Header.jsx";
+import Footer from "components/Footer/Footer.jsx";
 
 const HomePage = lazy(() => import("pages/HomePage/HomePage.jsx"));
 const CategoriesSamplePage = lazy(() =>
@@ -45,16 +46,7 @@ function App() {
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route component={NotFound} />
         </Switch>
-        <div>
-          Icons made by{" "}
-          <a href="https://www.freepik.com" title="Freepik">
-            Freepik
-          </a>{" "}
-          from{" "}
-          <a href="https://www.flaticon.com/" title="Flaticon">
-            www.flaticon.com
-          </a>
-        </div>
+        <Footer />
       </Suspense>
     </>
   );
