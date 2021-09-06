@@ -14,9 +14,10 @@ const CollectionItem = ({ item }) => {
 
   return (
     <S.CollectionItemContainer>
-      <S.CollectionItemImageContainer
-        style={{ background: `url(${imageUrl})  no-repeat` }}
-      />
+      <S.CollectionItemImageContainer>
+        <img src={imageUrl} alt="coffee" />
+      </S.CollectionItemImageContainer>
+
       <S.CollectionFooterContainer>
         <S.ItemNameSpan>{name}</S.ItemNameSpan>
         <S.ItemPriceSpan>{price}</S.ItemPriceSpan>

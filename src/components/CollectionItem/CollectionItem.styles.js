@@ -2,11 +2,17 @@ import styled from "styled-components";
 import CustomButton from "components/CustomButton/CustomButton";
 
 export const CollectionItemImageContainer = styled.div`
-  width: 100%;
-  height: 95%;
-  background-size: cover;
-  background-position: center;
+  max-width: 20vw;
+  min-width: 10em;
+  overflow: hidden;
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 20vw;
+    min-width: 20em;
+  }
 `;
 
 export const CollectionItemAddButton = styled(CustomButton)`
