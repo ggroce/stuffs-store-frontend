@@ -2,17 +2,11 @@ import styled from "styled-components";
 import CustomButton from "components/CustomButton/CustomButton";
 
 export const CollectionItemImageContainer = styled.div`
-  max-width: 20vw;
-  min-width: 10em;
+  max-width: 100%;
   overflow: hidden;
   margin-bottom: 5px;
   display: flex;
   align-items: center;
-
-  img {
-    width: 20vw;
-    min-width: 20em;
-  }
 `;
 
 export const CollectionItemAddButton = styled(CustomButton)`
@@ -31,11 +25,11 @@ export const CollectionItemAddButton = styled(CustomButton)`
 `;
 
 export const CollectionItemContainer = styled.div`
-  width: 22vw;
+  width: 20vw;
   display: flex;
   flex-direction: column;
   height: 350px;
-  max-width: 290px;
+  max-width: 300px;
   min-width: 200px;
   align-items: center;
   position: relative;

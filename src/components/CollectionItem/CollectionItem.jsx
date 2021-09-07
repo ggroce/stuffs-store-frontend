@@ -15,7 +15,7 @@ const CollectionItem = ({ item }) => {
   return (
     <S.CollectionItemContainer>
       <S.CollectionItemImageContainer>
-        <img src={imageUrl} alt="coffee" />
+        <img src={imageUrl} alt={name} />
       </S.CollectionItemImageContainer>
 
       <S.CollectionFooterContainer>

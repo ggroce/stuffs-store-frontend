@@ -52,7 +52,7 @@ export const MenuItemContainer = styled.div`
     margin-left: 7.5px;
   }
 
-  @media screen and (max-width: 45em) {
+  @media screen and (max-width: 60em) {
     height: 200px;
   }
 

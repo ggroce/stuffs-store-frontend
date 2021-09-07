@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const CollectionPageContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   h2 {
     font-size: 38px;
@@ -21,6 +22,11 @@ export const ItemsContainer = styled.div`
 
   & > div {
     margin-bottom: 30px;
+  }
+
+  @media screen and (max-width: 60em) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 15px;
   }
 
   @media screen and (max-width: 40em) {
