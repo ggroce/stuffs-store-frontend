@@ -22,6 +22,7 @@ const NotFound = lazy(() => import("pages/NotFound/NotFound.jsx"));
 
 function App() {
   const currentUser = useSelector(selectCurrentUser);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
