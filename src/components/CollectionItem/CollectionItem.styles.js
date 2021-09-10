@@ -7,6 +7,9 @@ export const CollectionItemImageContainer = styled.div`
   margin-bottom: 5px;
   display: flex;
   align-items: center;
+  img {
+    height: 100%;
+  }
 `;
 
 export const CollectionItemAddButton = styled(CustomButton)`

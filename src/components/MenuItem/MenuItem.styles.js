@@ -18,13 +18,14 @@ export const ContentContainer = styled.div`
   justify-content: center;
   border: 1px solid black;
   background-color: white;
-  opacity: 0.75;
+  opacity: 0.8;
+  margin-bottom: 20px;
 
   h2 {
     font-weight: bold;
     margin-bottom: 6px;
     font-size: 22px;
-    color: #4a4a4a;
+    // color: #4a4a4a;
   }
 
   span {
@@ -38,7 +39,7 @@ export const MenuItemContainer = styled.div`
   height: ${(props) => (props.$size === "large" ? "380px" : "240px")};
   flex: 1 1 auto;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   border: 1px solid black;
   margin: 0 7.5px 15px;
@@ -53,6 +54,7 @@ export const MenuItemContainer = styled.div`
   }
 
   @media screen and (max-width: 60em) {
+    min-width: 200px;
     height: 200px;
   }
 
