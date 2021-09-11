@@ -2,11 +2,14 @@ import styled from "styled-components";
 import CustomButton from "components/CustomButton/CustomButton";
 
 export const CollectionItemImageContainer = styled.div`
+  position: relative;
   max-width: 100%;
   overflow: hidden;
   margin-bottom: 5px;
   display: flex;
   align-items: center;
+  justify-content: center;
+
   img {
     height: 100%;
   }
@@ -16,7 +19,7 @@ export const CollectionItemAddButton = styled(CustomButton)`
   width: 80%;
   opacity: 0.7;
   position: absolute;
-  top: 255px;
+  bottom: 15%;
   display: none;
 
   @media screen and (max-width: 40em) {
@@ -25,6 +28,17 @@ export const CollectionItemAddButton = styled(CustomButton)`
     min-width: unset;
     padding: 0 10px;
   }
+`;
+
+export const CollectionItemAttribution = styled.div`
+  position: absolute;
+  display: none;
+  width: 90%;
+  height: 5%;
+  bottom: 5%;
+  color: white;
+  background-color: black;
+  opacity: 80%;
 `;
 
 export const CollectionItemContainer = styled.div`
@@ -45,6 +59,12 @@ export const CollectionItemContainer = styled.div`
     ${CollectionItemAddButton} {
       opacity: 0.85;
       display: flex;
+    }
+
+    ${CollectionItemAttribution} {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
